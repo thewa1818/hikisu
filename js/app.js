@@ -83,3 +83,7 @@ people = checkAge(18);
 console.log(people);
 people = checkAge(22);
 console.log(people);
+
+//コールバック関数とは
+//引数の中に別の関数をいれること。ややこし！！！
+//あとでなんかしたい。今すぐ処理実行しないで欲しい、あとで実行して欲しい
