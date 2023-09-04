@@ -136,14 +136,14 @@ const cafeMenus = [
 
 console.log(cafeMenus);
 
-const takeoutPrice = cafeMenus.map((menu) => {
-  return (
-    `${menu.name}の値段は` +
-    Math.floor(menu.price * 1.08)
-      .toString()
-      .concat("円")
-  );
-});
+// const takeoutPrice = cafeMenus.map((menu) => {
+//   return (
+//     `${menu.name}の値段は` +
+//     Math.floor(menu.price * 1.08)
+//       .toString()
+//       .concat("円")
+//   );
+// });
 
 const eatinPrice = cafeMenus.map((menu) => {
   return (
@@ -153,6 +153,8 @@ const eatinPrice = cafeMenus.map((menu) => {
       .concat("円")
   );
 });
+
+console.log(eatinPrice);
 
 // const vvv = eatinPrice.map((item) => {
 //   return item.split();
@@ -165,14 +167,35 @@ const eatinPrice = cafeMenus.map((menu) => {
 
 // console.log(cafeRate(cafeMenus[2].price));
 
+// $("#takeout").on("click", function () {
+//   $(".takeoutMenu").html(`
+//   <li class="takeoutitem">${takeoutPrice}です</li>`);
+// });
+
+// $("#eatin").on("click", function () {
+//   const list = `<li class="eatinitem">${eatinPrice}です</li>`;
+//   $(".eatinMenu").append(list.split(","));
+// });
+
+// console.log(eatinPrice);
+
 $("#takeout").on("click", function () {
-  $(".takeoutMenu").html(`
-  <li class="takeoutitem">${takeoutPrice}です</li>`);
+  const takeoutMenu = $(".takeoutMenu");
+
+  // メニューアイテムごとに処理
+  cafeMenus.forEach((menu) => {
+    const priceWithTax = Math.floor(menu.price * 1.08);
+    const listItem = `<li class="takeoutitem">${menu.name}の値段は${priceWithTax}円です</li>`;
+    takeoutMenu.append(listItem);
+  });
 });
 
-console.log(eatinPrice);
-
 $("#eatin").on("click", function () {
-  const list = `<li class="eatinitem">${eatinPrice}です</li>`;
-  $(".eatinMenu").append(list.split(","));
+  const eatinMenu = $(".eatinMenu");
+
+  cafeMenus.map((item) => {
+    const priceWithTax = Math.floor(menu.price * 1.1);
+    const listItem = `<li class="eatinitem">${menu.name}の値段は${priceWithTax}円です</li>`;
+    eatinMenu.append(listItem);
+  });
 });
