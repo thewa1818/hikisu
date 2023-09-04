@@ -84,6 +84,95 @@ console.log(people);
 people = checkAge(22);
 console.log(people);
 
-//コールバック関数とは
+//コールバック関数とはなんぞや
 //引数の中に別の関数をいれること。ややこし！！！
-//あとでなんかしたい。今すぐ処理実行しないで欲しい、あとで実行して欲しい
+//あとでなんかしたい。今すぐ処理実行しないで欲しい、あとで実行して欲しい(?)
+
+function keisan(a, b, c) {
+  return (a + b) * c;
+}
+
+console.log(keisan(2, 3, 2) + 2);
+
+//初期値きめれる
+function lateTotal(price, amount, rate = 1.1) {
+  return price * amount * rate;
+}
+
+console.log(lateTotal(100, 10));
+console.log(lateTotal(100, 10, 1.3));
+
+//関数式 constで定義する。ちゃんとしたとこに置かないといけない
+//関数宣言 functionからはじまるやつどこにでもおける
+
+//アロー
+const double = (num) => {
+  return num + 5;
+};
+
+console.log(double(2));
+
+const alow = (num, func) => {
+  return func(num);
+};
+console.log(alow(10, double));
+
+//
+
+const cafeMenus = [
+  {
+    name: "コーヒー",
+    price: 350,
+  },
+  {
+    name: "ラテ",
+    price: 450,
+  },
+  {
+    name: "モカ",
+    price: 550,
+  },
+];
+
+console.log(cafeMenus);
+
+const takeoutPrice = cafeMenus.map((menu) => {
+  return (
+    `${menu.name}の値段は` +
+    Math.floor(menu.price * 1.08)
+      .toString()
+      .concat("円")
+  );
+});
+
+const eatinPrice = cafeMenus.map((menu) => {
+  return (
+    `${menu.name}の値段は` +
+    Math.floor(menu.price * 1.1)
+      .toString()
+      .concat("円")
+  );
+});
+
+// const vvv = eatinPrice.map((item) => {
+//   return item.split();
+// });
+// console.log(vvv);
+
+// function cafeRate(price, rate = 1.08) {
+//   return price * rate;
+// }
+
+// console.log(cafeRate(cafeMenus[2].price));
+
+$("#takeout").on("click", function () {
+  $(".takeoutMenu").html(`
+  <li class="takeoutitem">${takeoutPrice}です</li>`);
+});
+
+console.log(eatinPrice);
+
+$("#eatin").on("click", function () {
+  const list = `<li class="eatinitem">${eatinPrice}です</li>`;
+  $(".eatinMenu").append(list.split(","));
+});
